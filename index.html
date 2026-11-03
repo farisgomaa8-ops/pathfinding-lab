@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Draw a map, choose a search algorithm, and see how BFS, Dijkstra and A* find a route.">
+  <title>Pathfinding Lab</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="src/app.js"></script>
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="Pathfinding Lab home"><span class="mark" aria-hidden="true">⌁</span> Pathfinding Lab</a>
+      <a class="source-link" href="https://github.com/farisgomaa8-ops/pathfinding-lab">View source</a>
+    </header>
+    <section class="intro" aria-labelledby="page-title">
+      <div><h1 id="page-title">A shorter path<br>isn’t always cheaper.</h1><p>Draw a map. Add difficult terrain. Watch three search algorithms make different choices.</p></div>
+      <div class="intro-note"><span class="note-line" aria-hidden="true"></span><p>One grid.<br>Three ways to find a route.</p></div>
+    </section>
+    <section class="workbench" aria-label="Pathfinding workbench">
+      <aside class="controls">
+        <div class="control-group">
+          <label for="algorithm">Search algorithm</label>
+          <select id="algorithm"><option value="astar">A* search</option><option value="dijkstra">Dijkstra</option><option value="bfs">Breadth-first search</option></select>
+          <p id="algorithm-note" class="helper">Uses distance to the goal to guide the search. Finds the lowest-cost route.</p>
+        </div>
+        <div class="control-group"><label for="preset">Start with a map</label><select id="preset"><option value="terrain">Across the marsh</option><option value="maze">The long way around</option><option value="open">Open field</option><option value="blocked">No way through</option></select></div>
+        <fieldset class="paint-tools"><legend>Draw on the grid</legend><div class="tool-list">
+          <button class="tool" type="button" data-tool="wall" aria-pressed="true"><span class="swatch wall"></span>Wall</button>
+          <button class="tool" type="button" data-tool="terrain" aria-pressed="false"><span class="swatch terrain">5</span>Terrain</button>
+          <button class="tool" type="button" data-tool="erase" aria-pressed="false"><span class="swatch ground"></span>Erase</button>
+          <button class="tool" type="button" data-tool="start" aria-pressed="false"><span class="swatch start">S</span>Start</button>
+          <button class="tool" type="button" data-tool="goal" aria-pressed="false"><span class="swatch goal">G</span>Goal</button>
+        </div></fieldset>
+        <div class="speed-control"><label for="speed">Playback speed</label><input id="speed" type="range" min="1" max="100" value="65" aria-label="Playback speed"></div>
+        <div class="play-controls"><button id="run" type="button" class="primary">Run search</button><button id="step" type="button">Step</button><button id="reset" type="button">Reset trace</button></div>
+        <button id="compare" type="button" class="compare-button">Compare all three</button>
+      </aside>
+      <div class="map-panel">
+        <div class="map-heading"><h2 id="map-title">Across the marsh</h2><span>22 × 14 cells</span></div>
+        <div class="grid-scroll"><div id="grid" role="grid" aria-label="Editable map" aria-describedby="grid-help"></div><div class="pan-strip">Swipe here to move across the map</div></div>
+        <div class="legend" aria-label="Map legend"><span><i class="swatch ground"></i>Ground · cost 1</span><span><i class="swatch terrain">5</i>Terrain · cost 5</span><span><i class="swatch explored"></i>Explored</span><span><i class="swatch route"></i>Route</span></div>
+        <p id="grid-help" class="helper grid-help">Click or drag to paint. Use arrow keys to move between cells and Space to apply a tool. Editing clears the current trace.</p>
+        <div class="readout"><div><span>Cells explored</span><strong id="visited">0</strong></div><div><span>Route steps</span><strong id="steps">—</strong></div><div><span>Travel cost</span><strong id="cost">—</strong></div><p id="status" role="status" aria-live="polite">Ready. Choose an algorithm and run a search.</p></div>
+      </div>
+    </section>
+    <section class="comparison" aria-labelledby="comparison-title">
+      <div class="comparison-heading"><h2 id="comparison-title">Same map. Different decisions.</h2><p>Compare expanded cells, route length, and the cost of entering each cell.</p></div>
+      <div id="comparison-results" class="comparison-results"><p class="empty-note">Run “Compare all three” to see the results for this map.</p></div>
+    </section>
+    <section class="explanations" aria-label="How the algorithms differ">
+      <article><h3>Breadth-first search</h3><p>Explores one step at a time. Finds a route with the fewest steps, but treats expensive terrain like ordinary ground.</p></article>
+      <article><h3>Dijkstra</h3><p>Explores the cheapest known route next. Finds the lowest travel cost, including the cost of crossing terrain.</p></article>
+      <article><h3>A* search</h3><p>Adds a distance estimate to the known cost. With this grid’s movement rules, the estimate keeps the route optimal.</p></article>
+    </section>
+    <footer><p>Built for curiosity, one cell at a time.</p><p>Four directions. No diagonal moves. Costs apply when entering a cell.</p></footer>
+  </main>
+</body>
+</html>

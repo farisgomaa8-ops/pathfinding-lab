@@ -1,0 +1,10 @@
+{
+  "name": "pathfinding-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An interactive workbench for comparing BFS, Dijkstra, and A* on weighted grids.",
+  "scripts": { "test": "node --test", "start": "python3 -m http.server 8000" },
+  "engines": { "node": ">=18" },
+  "license": "MIT"
+}
