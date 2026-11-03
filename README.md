@@ -1,5 +1,7 @@
 # Pathfinding Lab
 
+**[Open the live demo](https://farisgomaa8-ops.github.io/pathfinding-lab/)**
+
 A browser workbench for understanding **BFS, Dijkstra, and A\*** through the routes they choose. Draw walls, add expensive terrain, move the endpoints, and replay a search cell by cell.
 
 The default map makes the tradeoff concrete: BFS takes **17 steps with a travel cost of 49**. Dijkstra and A* take **23 steps with a cost of 23**. A shorter path is not always a cheaper trip.
